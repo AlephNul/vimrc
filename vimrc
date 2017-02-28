@@ -2,11 +2,10 @@
 
 " ====== Global Options ====== "
 " {{{
-set nocompatible	" Vi compatibility	Must be set first
+set nocompatible	" Vi compatibility; must be set first
 
 execute pathogen#infect()
 
-filetype off
 filetype plugin indent on
 syntax on
 
@@ -16,8 +15,11 @@ set shiftround		" Set indent with < and > to multiple of shifwidth
 
 set relativenumber	" Display line numbers relative to cursor
 
+set hlsearch		" Hightlight search results
+set incsearch		" Hightlight while typing pattern
+
 set statusline=%f\ -\ %y
-set statusline+=%=%l/%L\ --%P--
+set statusline+=%=%l/%L\ ~\ %P\ ~
 set laststatus=2	" Always display status line
 " }}}
 
@@ -28,6 +30,18 @@ let mapleader = "&"
 " Edit and source vimrc file
 nnoremap <LEADER>ev :vsplit $MYVIMRC<CR>	
 nnoremap <LEADER>sv :source $MYVIMRC<CR>
+
+" Open last buffer in new window
+nnoremap <a :execute "leftabove split" bufname("#") "<CR>"
+nnoremap <b :execute "rightbelow split" bufname("#") "<CR>"
+nnoremap <l :execute "leftabove vsplit" bufname("#") "<CR>"
+nnoremap <r :execute "rightbelow vsplit" bufname("#") "<CR>"
+
+" Disable highlighting
+nnoremap nh :noh<CR>
+
+" Automatically make 'very magic' searches
+nnoremap / /\v
 
 " Scroll one line up and down
 nnoremap - <C-Y>

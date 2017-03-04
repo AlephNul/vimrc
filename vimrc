@@ -31,17 +31,22 @@ let mapleader = "&"
 nnoremap <LEADER>ev :vsplit $MYVIMRC<CR>	
 nnoremap <LEADER>sv :source $MYVIMRC<CR>
 
+" Enclose visual region inside quotes, parens, etc.
+vnoremap ar' <ESC>`>a'<ESC>`<i'<ESC>
+vnoremap ar" <ESC>`>a"<ESC>`<i"<ESC>
+vnoremap ar( <ESC>`>a)<ESC>`<i(<ESC>
+vnoremap ar{ <ESC>`>a}<ESC>`<i{<ESC>
+vnoremap ar[ <ESC>`>a]<ESC>`<i[<ESC>
+
 " Open last buffer in new window
 nnoremap <a :execute "leftabove split" bufname("#") "<CR>"
 nnoremap <b :execute "rightbelow split" bufname("#") "<CR>"
 nnoremap <l :execute "leftabove vsplit" bufname("#") "<CR>"
 nnoremap <r :execute "rightbelow vsplit" bufname("#") "<CR>"
 
-" Disable highlighting
-nnoremap nh :noh<CR>
-
-" Automatically make 'very magic' searches
+" Pattern searches
 nnoremap / /\v
+nnoremap nh :noh<CR>
 
 " Scroll one line up and down
 nnoremap - <C-Y>
@@ -50,6 +55,29 @@ nnoremap + <C-E>
 " Exit insert mode
 inoremap jk <ESC>
 inoremap <ESC> <NOP>
+" }}}
+
+" ======= Grep Operator ====== "
+" {{{
+nnoremap <LEADER>g :set operatorfunc=<SID>GrepOperator<CR>g@
+vnoremap <LEADER>g :<C-U>call <SID>GrepOperator(visualmode())<CR>
+
+function! s:GrepOperator(type)
+	let save = @@
+
+	if a:type ==# 'v'
+		execute "normal! `<v`>y"
+	elseif a:type ==# 'char'
+		execute "normal! `[y`]"
+	else
+		return
+	endif
+
+	silent execute "grep! -R" shellescape(@@) "."
+	copen
+
+	let @@ = save
+endfunction
 " }}}
 
 " ===== Vim file settings ==== "

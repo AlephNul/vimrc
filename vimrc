@@ -39,13 +39,14 @@ vnoremap ar{ <ESC>`>a}<ESC>`<i{<ESC>
 vnoremap ar[ <ESC>`>a]<ESC>`<i[<ESC>
 
 " Open last buffer in new window
-nnoremap <a :execute "leftabove split" bufname("#") "<CR>"
-nnoremap <b :execute "rightbelow split" bufname("#") "<CR>"
-nnoremap <l :execute "leftabove vsplit" bufname("#") "<CR>"
-nnoremap <r :execute "rightbelow vsplit" bufname("#") "<CR>"
+nnoremap <a :execute "leftabove split" bufname("#") <CR>
+nnoremap <b :execute "rightbelow split" bufname("#") <CR>
+nnoremap <l :execute "leftabove vsplit" bufname("#") <CR>
+nnoremap <r :execute "rightbelow vsplit" bufname("#") <CR>
 
 " Pattern searches
 nnoremap / /\v
+nnoremap ? ?\v
 nnoremap nh :noh<CR>
 
 " Scroll one line up and down

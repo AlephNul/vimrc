@@ -15,6 +15,7 @@ set shiftround		" Set indent with < and > to multiple of shifwidth
 
 set relativenumber	" Display line numbers relative to cursor
 
+set ignorecase		" Case insensitive search
 set hlsearch		" Hightlight search results
 set incsearch		" Hightlight while typing pattern
 
@@ -56,6 +57,10 @@ nnoremap + <C-E>
 " Exit insert mode
 inoremap jk <ESC>
 inoremap <ESC> <NOP>
+
+" Insert new line and stay in normal mode
+nnoremap yo o<ESC>
+nnoremap yO O<ESC>
 " }}}
 
 " ======= Grep Operator ====== "

@@ -13,6 +13,7 @@ set tabstop=8		" Length of tabulations
 set shiftwidth=8	" Length of < and > shifts
 set shiftround		" Set indent with < and > to multiple of shifwidth
 
+set number		" Display current line number
 set relativenumber	" Display line numbers relative to cursor
 
 set ignorecase		" Case insensitive search
@@ -48,7 +49,7 @@ nnoremap <r :execute "rightbelow vsplit" bufname("#") <CR>
 " Pattern searches
 nnoremap / /\v
 nnoremap ? ?\v
-nnoremap nh :noh<CR>
+nnoremap eh :noh<CR>
 
 " Scroll one line up and down
 nnoremap - <C-Y>
